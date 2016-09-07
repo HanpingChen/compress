@@ -21,7 +21,8 @@ import com.chen.util.MethodUtil;
  */
 public class CCompressor implements onReadListener{
 
-	private String path;
+	private String inputpath;
+	private String outputpath;
 	private File file;
 	private AnalyseQuality analyseQuality = new AnalyseQuality();
 	private RunLehgthCodeCompressor codeCompressor = new RunLehgthCodeCompressor();
@@ -34,13 +35,14 @@ public class CCompressor implements onReadListener{
 	private FastqFileWriter dnaWriter = new FastqFileWriter(new File("dna.temp"));
 	//写入质量行临时文件
 	private FastqFileWriter qualityWriter = new FastqFileWriter(new File("quality.temp"));
-	public CCompressor(String path) {
+	public CCompressor(String path,String outputpath) {
 		// TODO Auto-generated constructor stub
-		this.path = path;
+		this.inputpath = path;
+		this.outputpath = outputpath;
 		file = new File(path);
 	}
 	public void compress(){
-		reader = new FastqFileReader(this,path);
+		reader = new FastqFileReader(this,inputpath);
 		reader.read();
 	}
 	@Override

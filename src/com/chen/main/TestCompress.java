@@ -10,9 +10,10 @@ import org.junit.Test;
 public class TestCompress {
 
 	String Path = "";
+	String outputpath = "";
 	@Test
 	public void test() {
-		CCompressor compressor = new CCompressor(Path);
+		CCompressor compressor = new CCompressor(Path,outputpath);
 		compressor.compress();
 	}
 	
