@@ -82,6 +82,8 @@ public class CCompressor implements onReadListener{
 	@Override
 	public void onComplete() {
 		// TODO Auto-generated method stub
+		LzCompress lzCompress = new LzCompress(outputpath);
+		lzCompress.compress();
 		
 	}
 	@Override

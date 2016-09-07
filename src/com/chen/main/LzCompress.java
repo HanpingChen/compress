@@ -13,15 +13,20 @@ public class LzCompress {
 
 	private String path = "/Users/chen/Desktop/10.chpdsrc";
 	String encodePath = "/Users/chen/Desktop/temp2.hahah";
-	private String titleTempPath = "./title.temp";
-	private String dnaTempPath = "./dna.temp";
-	private String qualityTempPath = "./quality.temp";
+	private String titleTempPath = "title.temp";
+	private String dnaTempPath = "dna.temp";
+	private String qualityTempPath = "quality.temp";
 	
 	private FileInputStream finTitle;
 	private FileInputStream finDna;
 	private FileInputStream finQuality;
 	private FileOutputStream fout ;
 	
+	private String outputpath;
+	
+	public LzCompress(String outputpath){
+		this.outputpath = outputpath;
+	}
 	
 	public void compress(){
 		
@@ -29,12 +34,17 @@ public class LzCompress {
 			finTitle = new FileInputStream(new File(titleTempPath));
 			finDna = new FileInputStream(new File(dnaTempPath));
 			finQuality = new FileInputStream(new File(qualityTempPath));
-			fout = new FileOutputStream(new File(encodePath));
+			fout = new FileOutputStream(new File(outputpath));
 			Encoder encoder = new Encoder();
 			encoder.Code(finTitle, fout, -1, -1, null);
 			encoder.Code(finDna, fout, -1, -1, null);
 			encoder.Code(finQuality, fout, -1, -1, null);
-			
+			File file = new File(titleTempPath);
+			file.delete();
+			file = new File(dnaTempPath);
+			file.delete();
+			file = new File(qualityTempPath);
+			file.delete();
 			System.out.println("完成");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
